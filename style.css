@@ -1,0 +1,119 @@
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+main {
+    background-color: lightblue;
+    width: 470px;
+    height: 790px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.displayContainer{
+    background-color: aliceblue;
+    align-self: stretch;
+    font-size: 23px;
+    padding: 25px;
+    margin: 5px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.clear {
+    padding: 8px;
+    background-color: aqua;
+    border: 1px solid black;
+    border-radius: 10px;
+    font-size: 18px;
+    width: 80px;
+}
+.clear:hover{
+    background-color: aquamarine;
+}
+
+.center {
+    display: flex;
+    justify-content: space-between;
+    margin: 5px;
+}
+
+.numbers {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 5px;
+}
+
+.number {
+    background-color: antiquewhite;
+    width: 90px;
+    height: 90px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+}
+
+.number:hover {
+    background-color: rgb(252, 213, 166);
+}
+
+.operators{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.operator{
+    background-color: antiquewhite;
+    width: 70px;
+    height: 63.5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+}
+.operator:hover{
+    background-color: rgb(252, 213, 166);
+}
+
+
+.footer{
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 5px;
+}
+
+.egal {
+    background-color: antiquewhite;
+    width: 185px;
+    height: 90px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 10px 10px 25px;
+}
+
+.zero{
+    background-color: antiquewhite;
+    width: 90px;
+    height: 90px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 10px 10px 25px;
+}
+.zero:hover{
+    background-color: rgb(252, 213, 166);
+}
+
+.egal:hover{
+    background-color: rgb(252, 213, 166);
+}
