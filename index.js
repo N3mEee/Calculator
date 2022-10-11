@@ -1,4 +1,5 @@
 const display = document.querySelector('.display')
+const deleteLast = document.querySelector('.backspace')
 const plus = document.querySelector('.plus')
 const minus = document.querySelector('.minus')
 const multi = document.querySelector('.multi')
@@ -6,6 +7,8 @@ const divide = document.querySelector('.divide')
 const egal = document.querySelector('.egal')
 const numbers = document.querySelector('.numbers')
 const clear = document.querySelector('.clear')
+const message = document.querySelector('.message')
+const dot = document.querySelector('.dot')
 let operands = []
 
 //clear
@@ -14,6 +17,10 @@ let clearDisplay = () => {
 }
 const checkClear = clear.addEventListener('click', (e) => {
     clearDisplay()
+})
+
+const deleteLastC = deleteLast.addEventListener('click', (e) => {
+    backSpace();
 })
 
 //numbers
@@ -31,7 +38,10 @@ const getKeyboardInput = window.addEventListener('keydown', (e) => {
     } else if (e.key === '/') {
         egalLogic()
         setDisplay('/')
-    } else if (e.key === '=' || e.code === 'Space' || e.key === "Enter") {
+    } else if (e.key === '.') {
+        setDisplay('.')
+    }
+     else if (e.key === '=' || e.code === 'Space' || e.key === "Enter") {
         egalLogic()
     } else if (e.key === 'Backspace') {
         backSpace()
@@ -55,20 +65,25 @@ function getNumbers() {
         numbersNodes.push(numbers.childNodes[i])
     }
     let x = numbersNodes.filter((item) => {
-        return (item.nodeType === 1) ? true : false;
+        return (item.className === 'number') ? true : false;
     })
     return x
 }
 
 //display
 function setDisplay(input) {
-    if (display.textContent === '0') {
+    if (input.toString().length >= 27 || display.textContent.length >= 27) {
+        message.textContent = "TO MANY NUMBERS"
+        clearDisplay()
+    }else if (display.textContent === '0') {
         display.textContent = ''
         display.textContent += input;
     } else {
         display.textContent += input;
     }
 }
+
+
 
 //operators events
 const plusClick = plus.addEventListener('click', (e) => {
@@ -88,6 +103,10 @@ const divideClick = divide.addEventListener('click', (e) => {
     setDisplay('/')
 })
 
+const dotClick = dot.addEventListener('click', (e) =>{
+    setDisplay('.')
+})
+
 const egalClick = egal.addEventListener('click', (e) => {
     egalLogic()
 })
@@ -95,11 +114,11 @@ const egalClick = egal.addEventListener('click', (e) => {
 //make an array
 function getOperands(input) {
     let x = []
-    if (display.textContent.substring(0,1) === '-'){
+    if (display.textContent.substring(0, 1) === '-') {
         x = display.textContent.substring(1).split(input)
         x[0] /= (-1)
         return x
-    }else{
+    } else {
         return display.textContent.split(input)
     }
 }
@@ -116,6 +135,7 @@ function sub(x, y) {
 function div(x, y) {
     if (y === 0) {
         clearDisplay()
+        message.innerHTML = `${x} / ${y} = <a style="color: white;" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">this</a>`
         return 0
     }
     return (Number.isInteger(x / y) ? (x / y) : (x / y).toFixed(2))
@@ -129,22 +149,26 @@ function egalLogic() {
     if (display.textContent.includes('/')) {
         operands = getOperands('/')
         clearDisplay()
+        message.textContent = `${operands[0]} / ${operands[1]} = ${div(Number(operands[0]), Number(operands[1]))}`
         setDisplay(div(Number(operands[0]), Number(operands[1])))
     } else if (display.textContent.includes('*')) {
         operands = getOperands('*')
         clearDisplay()
+        message.textContent = `${operands[0]} * ${operands[1]} = ${mul(Number(operands[0]), Number(operands[1]))}`
         setDisplay(mul(Number(operands[0]), Number(operands[1])))
-    }else if (display.textContent.includes('+')) {
+    } else if (display.textContent.includes('+')) {
         operands = getOperands('+')
         clearDisplay()
+        message.textContent = `${operands[0]} + ${operands[1]} = ${sum(Number(operands[0]), Number(operands[1]))}`
         setDisplay(sum(Number(operands[0]), Number(operands[1])))
     } else if (display.textContent.substring(1).includes('-')) {
         operands = getOperands('-')
         clearDisplay()
+        message.textContent = `${operands[0]} - ${operands[1]} = ${sub(Number(operands[0]), Number(operands[1]))}`
         setDisplay(sub(Number(operands[0]), Number(operands[1])))
     }
 }
 
 function backSpace() {
-    display.textContent = display.textContent.substring(0, display.textContent.length-1)
+    display.textContent = display.textContent.substring(0, display.textContent.length - 1)
 }

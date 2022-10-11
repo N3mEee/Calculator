@@ -6,37 +6,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculator</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="./index.js" defer></script>
 </head>
 <body>
     <main>
-        <div class="displayContainer">
+        <div class="container-display">
             <div class="display">0</div>
-            <button class="clear">clear</button>
+            <button class="backspace"><i class="fa fa-reply"></i></button>
+        </div>
+        <div class="top-buttons">
+            <button class="clear">C</button>
+            <p class="message"></p>
         </div>
         <div class="center">
             <div class="numbers">
-                <div class="number">1</div>
-                <div class="number">2</div>
-                <div class="number">3</div>
-                <div class="number">4</div>
-                <div class="number">5</div>
-                <div class="number">6</div>
-                <div class="number">7</div>
-                <div class="number">8</div>
-                <div class="number">9</div>
+                <button class="number">7</button>
+                <button class="number">8</button>
+                <button class="number">9</button>
+                <button class="operator divide">/</button>
+                <button class="number">4</button>
+                <button class="number">5</button>
+                <button class="number">6</button>
+                <button class="operator multi">*</button>
+                <button class="number">1</button>
+                <button class="number">2</button>
+                <button class="number">3</button>
+                <button class="operator minus">-</button>
+                <button class="number">0</button>
+                <button class="dot">.</button>
+                <button class="egal">=</button>
+                <button class="operator plus">+</button>
             </div>
-            <div class="operators">
-                <div class="operator divide">/</div>
-                <div class="operator multi">*</div>
-                <div class="operator minus">-</div>
-                <div class="operator plus">+</div>
-            </div>
-        </div>
-        <div class="footer">
-            <div class="number">.</div>
-            <div class="zero" data-number="0">0</div>
-            <div class="egal">=</div>
         </div>
     </main>
 </body>
