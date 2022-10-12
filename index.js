@@ -149,23 +149,27 @@ function egalLogic() {
     if (display.textContent.includes('/')) {
         operands = getOperands('/')
         clearDisplay()
-        message.textContent = `${operands[0]} / ${operands[1]} = ${div(Number(operands[0]), Number(operands[1]))}`
-        setDisplay(div(Number(operands[0]), Number(operands[1])))
+        let result = div(Number(operands[0]), Number(operands[1]))
+        message.textContent = `${operands[0]} / ${operands[1]} = ${result}`
+        setDisplay(result)
     } else if (display.textContent.includes('*')) {
         operands = getOperands('*')
         clearDisplay()
-        message.textContent = `${operands[0]} * ${operands[1]} = ${mul(Number(operands[0]), Number(operands[1]))}`
-        setDisplay(mul(Number(operands[0]), Number(operands[1])))
+        let result = mul(Number(operands[0]), Number(operands[1]))
+        message.textContent = `${operands[0]} * ${operands[1]} = ${result}`
+        setDisplay(result)
     } else if (display.textContent.includes('+')) {
         operands = getOperands('+')
         clearDisplay()
-        message.textContent = `${operands[0]} + ${operands[1]} = ${sum(Number(operands[0]), Number(operands[1]))}`
-        setDisplay(sum(Number(operands[0]), Number(operands[1])))
+        let result = sum(Number(operands[0]), Number(operands[1]))
+        message.textContent = `${operands[0]} + ${operands[1]} = ${result}`
+        setDisplay(result)
     } else if (display.textContent.substring(1).includes('-')) {
         operands = getOperands('-')
         clearDisplay()
-        message.textContent = `${operands[0]} - ${operands[1]} = ${sub(Number(operands[0]), Number(operands[1]))}`
-        setDisplay(sub(Number(operands[0]), Number(operands[1])))
+        let result = sub(Number(operands[0]), Number(operands[1]))
+        message.textContent = `${operands[0]} - ${operands[1]} = ${result}`
+        setDisplay(result)
     }
 }
 
