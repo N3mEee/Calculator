@@ -41,7 +41,7 @@ const getKeyboardInput = window.addEventListener('keydown', (e) => {
     } else if (e.key === '.') {
         setDisplay('.')
     }
-     else if (e.key === '=' || e.code === 'Space' || e.key === "Enter") {
+    else if (e.key === '=' || e.code === 'Space' || e.key === "Enter") {
         egalLogic()
     } else if (e.key === 'Backspace') {
         backSpace()
@@ -72,14 +72,18 @@ function getNumbers() {
 
 //display
 function setDisplay(input) {
-    if (input.toString().length >= 27 || display.textContent.length >= 27) {
+    if (input === 'NaN') {
+        clearDisplay()
+        message.textContent = "Please enter a valid number!"
+    } else if (input.toString().length >= 27 || display.textContent.length >= 27) {
         message.textContent = "TO MANY NUMBERS"
         clearDisplay()
-    }else if (display.textContent === '0') {
+    } else if (display.textContent === '0') {
         display.textContent = ''
         display.textContent += input;
     } else {
         display.textContent += input;
+
     }
 }
 
@@ -103,7 +107,7 @@ const divideClick = divide.addEventListener('click', (e) => {
     setDisplay('/')
 })
 
-const dotClick = dot.addEventListener('click', (e) =>{
+const dotClick = dot.addEventListener('click', (e) => {
     setDisplay('.')
 })
 
@@ -135,8 +139,7 @@ function sub(x, y) {
 function div(x, y) {
     if (y === 0) {
         clearDisplay()
-        message.innerHTML = `${x} / ${y} = <a style="color: white;" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">this</a>`
-        return 0
+        return `${x} / ${y} = <a style="color: white;" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">this</a>`
     }
     return (Number.isInteger(x / y) ? (x / y) : (x / y).toFixed(2))
 }
@@ -150,8 +153,12 @@ function egalLogic() {
         operands = getOperands('/')
         clearDisplay()
         let result = div(Number(operands[0]), Number(operands[1]))
-        message.textContent = `${operands[0]} / ${operands[1]} = ${result}`
-        setDisplay(result)
+        if (result.length > 28) {
+            message.innerHTML = result
+        } else {
+            message.textContent = `${operands[0]} / ${operands[1]} = ${result}`
+            setDisplay(result)
+        }
     } else if (display.textContent.includes('*')) {
         operands = getOperands('*')
         clearDisplay()
